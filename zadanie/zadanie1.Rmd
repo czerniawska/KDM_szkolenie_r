@@ -1,0 +1,81 @@
+---
+title: "Zadanie do wykonania"
+output: html_document
+date: "2025-12-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Zadanie 1: Import i czyszczenie (Po module 1 i 2)
+
+Cel: Wczytać dane demograficzne i przygotować listę uczestników. Narzędzia: read_csv, filter, mutate, select.
+
+Kroki:
+
+Wczytaj plik data/demografia.csv i przypisz go do zmiennej demo.
+
+Wczytaj plik dane/legenda_grup.csv do zmiennej legenda.
+
+Oczyść dane demograficzne:
+
+Usuń osoby, które nie mają przypisanej grupy (brak danych w Grupa_Kod).
+
+Wybierz tylko osoby dorosłe (zakładamy, że badanie jest dla 18+, sprawdź czy ktoś nie jest młodszy).
+
+Stwórz nową kolumnę Kategoria_Wiekowa: jeśli wiek > 50 to "Senior", w przeciwnym razie "Młody".
+Podpowiedź: wykorzystaj funkcję ifelse(warunek, 'co ma tu być jeśli prawda', 'co ma to być jeśli nieprawda').
+
+
+## Zadanie 2: Transformacja i łączenie (Po module 3)
+
+Cel: Stworzyć główną bazę danych do analizy (złączyć pacjentów z wynikami i zmienić format). Narzędzia: read_csv, pivot_longer, left_join.
+
+Kroki:
+
+Wczytaj plik data/wyniki_pamieci.csv (zauważ, że jest w formacie szerokim!).
+
+Zmień format wyników na długi (tidy):
+
+Kolumny z czasami (T0_Start, T1..., T2...) zamień na kolumnę Czas.
+
+Wartości punktowe zamień na kolumnę Wynik_Testu.
+
+Połącz wszystko w jedną tabelę baza_calkowita:
+
+Do wyników doklej dane demograficzne (połącz po ID).
+
+Do tego doklej pełne nazwy grup z tabeli legenda (połącz kolumnę Grupa_Kod z kolumną Kod).
+
+Bonus: Policz średni wynik testu dla każdej grupy w każdym punkcie czasowym (group_by + summarise).
+
+## Zadanie 3: Wizualizacja (Po module 4)
+
+Cel: Stworzyć wykres publikacyjny pokazujący, czy suplement działa. Narzędzia: ggplot2, geom_boxplot / geom_line, facet_wrap.
+
+Kroki:
+
+Stwórz wykres pudełkowy (boxplot) pokazujący rozkład Wynik_Testu (oś Y) w zależności od Czas (oś X).
+
+Pokoloruj pudełka w zależności od Opis (grupy badawczej).
+
+Podziel wykres na dwa panele (facet) ze względu na Plec.
+
+Zmień styl na theme_bw() i dodaj własny tytuł.
+
+Zapisz wykres do pliku .png.
+
+## Zadanie 4: Raport (Po module 5)
+
+Cel: Wygenerować tabelę podsumowującą (Tabela 1). Narzędzia: gtsummary.
+
+Kroki:
+
+Wybierz z bazy tylko dane z momentu rozpoczęcia badania (T0_Start), aby sprawdzić, czy grupy były równe na początku.
+
+Stwórz tabelę demograficzną (tbl_summary) porównującą Wiek i Płeć między dwiema grupami (Opis).
+
+Dodaj p-value, aby sprawdzić, czy różnice są istotne statystycznie.
+
+Wyeksportuj tabelę do Worda.
