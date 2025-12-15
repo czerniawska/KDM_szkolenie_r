@@ -3,10 +3,11 @@
 # ==========================================================
 
 library(tidyverse)
+library(ggplot2)
 # Upewnijmy się, że mamy dane
 ssaki <- read_csv('dane/ssaki.csv')
 
-# 1. GRAMATYKA GRAFIKI - Krok po kroku ---------------------
+# 1. GRAMATYKA GRAFIKI - Krok po kroku 
 
 # KROK A: Płótno (Definiujemy dane i osie)
 # Oś X: waga ciała (bodywt), Oś Y: całkowity sen (sleep_total)
@@ -24,7 +25,7 @@ ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
   scale_x_log10() +  # Logarytmiczna oś X
   labs(x = "Waga ciała (log)", y = "Czas snu (h)", title = "Sen a waga ssaków")
 
-# 2. KOLORY I GRUPY (Najtrudniejsza koncepcja!) ------------
+# 2. KOLORY I GRUPY (Najtrudniejsza koncepcja!) 
 
 # Wariant 1: Kolor zależy od zmiennej (Wewnątrz aes)
 # "Pokoloruj punkty w zależności od diety (vore)"
@@ -39,7 +40,7 @@ ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
   scale_x_log10()
 
 
-# 3. LINIE TRENDU (Statystyka na wykresie) -----------------
+# 3. LINIE TRENDU (Statystyka na wykresie) 
 # Dodajemy warstwę geom_smooth
 ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
   geom_point() +
@@ -48,7 +49,7 @@ ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
 # Szare pole to 95% przedział ufności.
 
 
-# 4. BOXPLOT - Porównywanie grup ---------------------------
+# 4. BOXPLOT - Porównywanie grup 
 # Czy mięsożercy śpią dłużej niż roślinożercy?
 
 ggplot(ssaki, aes(x = vore, y = sleep_total, fill = vore)) +
@@ -63,7 +64,7 @@ ggplot(ssaki, aes(x = vore, y = sleep_total)) +
   theme_bw() # Czysty styl (czarno-biały), dobry do druku
 
 
-# 5. FACET WRAP - Wiele wykresów naraz ---------------------
+# 5. FACET WRAP - Wiele wykresów naraz 
 # Chcemy zobaczyć zależność waga vs sen, ale OSOBNO dla każdej diety.
 
 ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
@@ -74,7 +75,7 @@ ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
   labs(title = "Relacja waga-sen w podgrupach diety")
 
 
-# 6. WYKRES LINIOWY (Line Plot) - Zmiana w czasie ----------
+# 6. WYKRES LINIOWY (Line Plot) - Zmiana w czasie 
 # Pamiętasz dane "dane_dlugie" z poprzedniej lekcji? 
 # (Jeśli ich nie masz, uruchom szybko kod z Lekcji 3)
 
@@ -85,7 +86,7 @@ ggplot(dane_dlugie, aes(x = czas_pomiaru, y = cisnienie, group = id, color = gru
   theme_minimal()
 
 
-# 7. EKSPORT DO PUBLIKACJI (ggsave) ------------------------
+# 7. EKSPORT DO PUBLIKACJI (ggsave) 
 
 # Najpierw przypisz wykres do zmiennej
 moj_wykres <- ggplot(ssaki, aes(x = vore, y = sleep_total)) + geom_boxplot()

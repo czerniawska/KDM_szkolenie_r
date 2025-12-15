@@ -36,8 +36,8 @@ library(flextable)
 
 # Sprawdź, gdzie jesteś 
 
-demo <- read_csv("dane/demografia.csv")
-legenda <- read_csv("dane/legenda_grup.csv")
+demo <- read_csv("zadanie/dane/demografia.csv")
+legenda <- read_csv("zadanie/dane/legenda_grup.csv")
 
 demo_clean <- demo %>% 
   drop_na(Grupa_Kod) %>% 
@@ -69,7 +69,7 @@ Do tego doklej pełne nazwy grup z tabeli legenda (połącz kolumnę Grupa_Kod z
 Bonus: Policz średni wynik testu dla każdej grupy w każdym punkcie czasowym (group_by + summarise).
 
 ```r
-raw_wyniki <- read_csv("dane/wyniki_pamieci.csv")
+raw_wyniki <- read_csv("zadanie/dane/wyniki_pamieci.csv")
 
 # A. PIVOTOWANIE (Szeroki -> Długi)
 wyniki_long <- raw_wyniki %>% 
@@ -115,7 +115,7 @@ wykres <- ggplot(baza_pelna, aes(x = czas, y = Wynik_Testu, fill = Opis)) +
 print(wykres)
 
 # Zapisywanie
-ggsave("wykresy/moj_wykres.png", plot = wykres)
+ggsave("zadanie/wyniki/moj_wykres.png", plot = wykres)
 ```
 
 ## Zadanie 4: Raport (Po module 5)
@@ -148,5 +148,5 @@ print(tabela1)
 # Eksport do Worda
 tabela1 %>% 
   as_flex_table() %>% 
-  save_as_docx(path = "wyniki/tabela1.docx")
+  save_as_docx(path = "zadanie/wyniki/tabela1.docx")
 ```

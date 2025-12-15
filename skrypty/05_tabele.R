@@ -3,7 +3,7 @@
 # ==========================================================
 
 # Instalacja
-install.packages(c("gtsummary", "flextable", "gt"))
+# install.packages(c("gtsummary", "flextable", "gt"))
 
 library(tidyverse)
 library(gtsummary)

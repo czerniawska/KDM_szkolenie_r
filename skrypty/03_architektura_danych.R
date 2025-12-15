@@ -4,7 +4,7 @@
 
 library(tidyverse)
 
-# CZĘŚĆ 1: RESTRUKTURYZACJA (PIVOTING) ---------------------
+# CZĘŚĆ 1: RESTRUKTURYZACJA (PIVOTING) 
 
 # 1. Stwórzmy typowe dane "Excelowe" (Format SZEROKI)
 # Mamy 3 pacjentów i ich ciśnienie w trzech punktach czasu.

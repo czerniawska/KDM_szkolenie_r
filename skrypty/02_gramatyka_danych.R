@@ -3,9 +3,9 @@
 # ==========================================================
 
 library(tidyverse) 
-install.packages('readxl')
+#install.packages('readxl')
 library(readxl) 
-install.packages('writexl')
+#install.packages('writexl')
 library(writexl)
 
 # 1. IMPORT DANYCH 
@@ -42,7 +42,7 @@ ssaki_wybrane <- ssaki %>%
 # Czytaj: pokaż wszystkie kolumny z pominięciem conservation
 ssaki %>% select(-conservation)
 
-# 4. FILTER - Wybieranie wierszy ---------------------------
+# 4. FILTER - Wybieranie wierszy 
 # To jest sito. Zostają tylko te wiersze, które spełniają warunek.
 
 # Tylko roślinożercy (herbi)

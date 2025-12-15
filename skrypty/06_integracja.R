@@ -1,6 +1,5 @@
 # ==============================================================================
 # PROJEKT: Analiza snu ssaków
-# AUTOR: Dominika Czerniawska
 # DATA: 2024-12-16
 # OPIS: Skrypt pobiera dane, czyści je, liczy statystyki i generuje wykres.
 # ==============================================================================
@@ -32,7 +31,7 @@ stat_table <- clean_data %>%
 # Zapis tabeli do Worda
 stat_table %>% 
   as_flex_table() %>% 
-  save_as_docx(path = "output/tabela_koncowa.docx")
+  save_as_docx(path = "wyniki/tabela_koncowa.docx")
 
 # 5. Wizualizacja 
 # Wykres pudełkowy
