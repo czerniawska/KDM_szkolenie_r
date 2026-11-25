@@ -19,9 +19,17 @@ wynik_eksperymentu <- 105.5
 
 wynik_eksperymentu * 2
 
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Zrozum, zamiast zapamiętywać
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Uczę się R od zera. Wyjaśnij mi prostym językiem, czym jest zmienna
+#    i czym różni się <- od =. Potem daj mi 3 krótkie ćwiczenia BEZ rozwiązań.
+#    Gdy wkleję odpowiedzi, sprawdź je i wytłumacz błędy."
+# ----------------------------------------------------------
+
 # 3. Sprawdzenie "Gdzie ja jestem?" (R Projects) 
 getwd() 
-# Powinieneś widzieć ścieżkę do folderu, w którym masz ten projekt.
+# Powinna się tu pojawić ścieżka do folderu, w którym masz ten projekt.
 # To jest nasza "baza".
 
 # 4. Ładowanie Pakietów 
@@ -33,3 +41,14 @@ library(tidyverse)
 
 # Jeśli widzisz komunikat "Conflicts" - nie panikuj. 
 # To normalna informacja, że tidyverse nadpisuje niektóre stare funkcje R.
+
+
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Komunikat o błędzie
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   Gdy R pokaże błąd, skopiuj CAŁY komunikat i fragment kodu, i zapytaj:
+#   "Co oznacza ten błąd? Wyjaśnij przyczynę, zanim podasz poprawkę.
+#    Jak mogę sama/sam rozpoznać ten błąd następnym razem?"
+#
+#   Pytaj o przyczynę, nie tylko o gotową poprawkę - tak uczysz się najszybciej.
+# ----------------------------------------------------------

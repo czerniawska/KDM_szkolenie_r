@@ -8,15 +8,27 @@ date: "2025-12-16"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Jak korzystać z AI przy tym zadaniu?
+
+AI może być świetnym korepetytorem, ale jeśli poprosisz je o gotowe rozwiązanie, niczego się nie nauczysz. Proponujemy trzy kroki:
+
+1. **Najpierw sama/sam (ok. 15 minut na zadanie).** Korzystaj ze skryptów z zajęć i z pomocy R (`?filter`).
+2. **Jeśli utkniesz – poproś o wskazówkę, nie o kod.** Na przykład:
+   *„Rozwiązuję zadanie w R (tidyverse). Muszę zamienić kolumny T0_Start, T1_Polowa, T2_Koniec na jedną kolumnę Czas. Nie podawaj mi kodu – powiedz tylko, której funkcji użyć i jakie ma najważniejsze argumenty.”*
+3. **Po rozwiązaniu – porównaj.** Wklej swój działający kod i zapytaj:
+   *„Czy da się to zapisać prościej lub czytelniej? Pokaż alternatywę i wyjaśnij różnice.”*
+
+Pamiętaj: AI czasem się myli. Każdy kod sprawdź, uruchamiając go w R.
+
 ## Zadanie 1: Import i czyszczenie (Po module 1 i 2)
 
 Cel: Wczytać dane demograficzne i przygotować listę uczestników. Narzędzia: read_csv, filter, mutate, select.
 
 Kroki:
 
-Wczytaj plik data/demografia.csv i przypisz go do zmiennej demo.
+Wczytaj plik zadanie/dane/demografia.csv i przypisz go do zmiennej demo.
 
-Wczytaj plik dane/legenda_grup.csv do zmiennej legenda.
+Wczytaj plik zadanie/dane/legenda_grup.csv do zmiennej legenda.
 
 Oczyść dane demograficzne:
 
@@ -27,14 +39,16 @@ Wybierz tylko osoby dorosłe (zakładamy, że badanie jest dla 18+, sprawdź czy
 Stwórz nową kolumnę Kategoria_Wiekowa: jeśli wiek > 50 to "Senior", w przeciwnym razie "Młody".
 Podpowiedź: wykorzystaj funkcję ifelse(warunek, 'co ma tu być jeśli prawda', 'co ma to być jeśli nieprawda').
 
+*Ćwicz z AI:* gdy skończysz, poproś: *„Daj mi 3 podobne zadania z filter() i mutate() na innych, zmyślonych danych. Bez rozwiązań.”*
+
 
 ## Zadanie 2: Transformacja i łączenie (Po module 3)
 
-Cel: Stworzyć główną bazę danych do analizy (złączyć pacjentów z wynikami i zmienić format). Narzędzia: read_csv, pivot_longer, left_join.
+Cel: Stworzyć główną bazę danych do analizy (złączyć pacjentów z wynikami i zmienić format). Narzędzia: read_csv, pivot_longer, left_join / inner_join.
 
 Kroki:
 
-Wczytaj plik data/wyniki_pamieci.csv (zauważ, że jest w formacie szerokim!).
+Wczytaj plik zadanie/dane/wyniki_pamieci.csv (zauważ, że jest w formacie szerokim!).
 
 Zmień format wyników na długi (tidy):
 
@@ -48,7 +62,11 @@ Do wyników doklej dane demograficzne (połącz po ID).
 
 Do tego doklej pełne nazwy grup z tabeli legenda (połącz kolumnę Grupa_Kod z kolumną Kod).
 
+Uwaga: w zadaniu 1 usunęliśmy osobę bez przypisanej grupy, ale jej wyniki nadal są w pliku wyniki_pamieci.csv. Sprawdź, co się z nią stanie po złączeniu. Podpowiedź: inner_join() zostawia tylko osoby obecne w obu tabelach.
+
 Bonus: Policz średni wynik testu dla każdej grupy w każdym punkcie czasowym (group_by + summarise).
+
+*Ćwicz z AI:* przed uruchomieniem kodu napisz, ile wierszy według Ciebie będzie miała tabela `baza_calkowita`. Potem poproś AI: *„Mam 20 osób, 3 punkty czasowe i usunęłam/usunąłem 1 osobę. Wyjaśnij, ile wierszy powinna mieć tabela po pivot_longer i inner_join.”* Sprawdź w R, kto miał rację.
 
 ## Zadanie 3: Wizualizacja (Po module 4)
 
@@ -66,6 +84,8 @@ Zmień styl na theme_bw() i dodaj własny tytuł.
 
 Zapisz wykres do pliku .png.
 
+*Ćwicz z AI:* wklej kod swojego wykresu i zapytaj: *„Co zmienić, żeby ten wykres nadawał się do publikacji? Wyjaśnij każdą zmianę.”* Wprowadź poprawki sama/sam.
+
 ## Zadanie 4: Raport (Po module 5)
 
 Cel: Wygenerować tabelę podsumowującą (Tabela 1). Narzędzia: gtsummary.
@@ -79,3 +99,5 @@ Stwórz tabelę demograficzną (tbl_summary) porównującą Wiek i Płeć międz
 Dodaj p-value, aby sprawdzić, czy różnice są istotne statystycznie.
 
 Wyeksportuj tabelę do Worda.
+
+*Ćwicz z AI:* zapytaj: *„Jakim testem gtsummary liczy p-value dla zmiennej ciągłej i kategorycznej przy dwóch grupach? Jak to sprawdzić w R?”* Porównaj odpowiedź z dokumentacją (`?add_p`).

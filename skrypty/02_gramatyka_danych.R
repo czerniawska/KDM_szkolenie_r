@@ -59,6 +59,15 @@ ssaki_wybrane %>%
   filter(vore == "herbi" | vore == "insecti")
 
 
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Generator ćwiczeń
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Mam tabelę 'ssaki' z kolumnami: name, genus, vore, order, conservation,
+#    sleep_total, sleep_rem, sleep_cycle, awake, brainwt, bodywt.
+#    Wymyśl 5 zadań na filter() i select() - od najłatwiejszego do najtrudniejszego.
+#    Nie podawaj rozwiązań. Sprawdzisz je, gdy je wkleję."
+# ----------------------------------------------------------
+
 # 5. MUTATE - Tworzenie nowych kolumn 
 # Chcemy policzyć:
 # - wagę w gramach (bodywt * 1000)
@@ -99,32 +108,56 @@ wyniki_grupowe <- ssaki_przetworzone %>%
 # Zobacz wynik
 print(wyniki_grupowe)
 
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Wyjaśnij mój kod linijka po linijce
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Oto mój kod: [wklej blok wyniki_grupowe]. Wyjaśnij, co robi każda linijka.
+#    Na koniec zadaj mi 2 pytania sprawdzające, czy to rozumiem."
+#
+#   Potem poproś: "Pokaż, jak to samo zrobić w Excelu (tabela przestawna)" -
+#   porównanie ze znanym narzędziem pomaga zrozumieć group_by + summarise.
+# ----------------------------------------------------------
+
 # 7. Zapisywanie danych do pliku
 
-# Zapiszmy wyniki w pliku
+# Najpierw utwórz folder "wyniki" (jeśli jeszcze nie istnieje).
+# R nie zapisze pliku do folderu, którego nie ma!
+if (!dir.exists('wyniki')) dir.create('wyniki')
+
+# Zapiszmy wyniki w pliku Excela
 writexl::write_xlsx(wyniki_grupowe, 'wyniki/wyniki_grupowe.xlsx') #korzystamy z biblioteki writexl
-# Stwórz folder wyniki i zapisz
-dir.create('wyniki') 
 # Możesz też zapisać w formie pliku csv
 write_csv(wyniki_grupowe, 'wyniki/wyniki_grupowe.csv')
 
 
 # 8. Wczytywanie innych typów plików
+# UWAGA: poniższe pliki NIE istnieją w tym projekcie - to wzory do skopiowania.
+# Dlatego linie są zakomentowane (#). Podmień ścieżkę na swój plik i usuń "#".
 
 # Wersja standardowa (przecinek rozdziela kolumny)
-dane <- read_csv("data/dane_usa.csv")
+# dane <- read_csv("dane/dane_usa.csv")
 
 # Wersja "Polska" (średnik rozdziela kolumny, przecinek to ułamek)
 # Jeśli Twój plik CSV wygląda dziwnie po wczytaniu - spróbuj tego!
-dane_pl <- read_csv2("data/dane_polska.csv")
+# dane_pl <- read_csv2("dane/dane_polska.csv")
 
 # Wersja uniwersalna (sami ustalamy separator)
-dane_txt <- read_delim("data/plik_tekstowy.txt", delim = "\t") # np. tabulator
+# dane_txt <- read_delim("dane/plik_tekstowy.txt", delim = "\t") # np. tabulator
 
-# Pliki natywne
+# Pliki natywne R (.rds) - zachowują typy kolumn, wczytują się błyskawicznie
 # Zapisywanie (np. po czyszczeniu danych)
-write_rds(dane_przetworzone, "output/czyste_dane.rds")
+write_rds(ssaki_przetworzone, "wyniki/czyste_dane.rds")
 
 # Wczytywanie (działa błyskawicznie)
-dane_szybkie <- read_rds("output/czyste_dane.rds")
+dane_szybkie <- read_rds("wyniki/czyste_dane.rds")
 
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Trudny plik do wczytania
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Po wczytaniu read_csv() mój plik ma wszystko w jednej kolumnie.
+#    Oto pierwsze 3 linijki pliku otwartego w Notatniku: [wklej].
+#    Której funkcji i jakich argumentów użyć?"
+#
+#   UWAGA: nie wklejaj do AI prawdziwych danych osobowych, danych pacjentów
+#   ani nieopublikowanych wyników. Wystarczą nagłówki i 2-3 zmyślone wiersze.
+# ----------------------------------------------------------

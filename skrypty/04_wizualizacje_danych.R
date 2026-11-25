@@ -40,6 +40,14 @@ ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
   scale_x_log10()
 
 
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Najczęstsza pułapka ggplot
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Dlaczego w ggplot2 geom_point(aes(color = 'red')) daje legendę z napisem
+#    'red' i różowe punkty, a geom_point(color = 'red') daje czerwone punkty?
+#    Wyjaśnij różnicę między mapowaniem a ustawieniem stałej."
+# ----------------------------------------------------------
+
 # 3. LINIE TRENDU (Statystyka na wykresie) 
 # Dodajemy warstwę geom_smooth
 ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
@@ -78,18 +86,34 @@ ggplot(ssaki, aes(x = bodywt, y = sleep_total)) +
 # 6. WYKRES LINIOWY (Line Plot) - Zmiana w czasie 
 # Pamiętasz dane "dane_dlugie" z poprzedniej lekcji? 
 # (Jeśli ich nie masz, uruchom szybko kod z Lekcji 3)
+# Poniższa linia zrobi to za Ciebie, jeśli obiektu "dane_dlugie" brakuje:
+if (!exists("dane_dlugie")) source("skrypty/03_architektura_danych.R")
 
 # Ważne: Musimy powiedzieć R, które punkty łączyć (group = id)
-ggplot(dane_dlugie, aes(x = czas_pomiaru, y = cisnienie, group = id, color = grupa)) +
-  geom_line(size = 1) +
+ggplot(dane_dlugie, aes(x = czas, y = cisnienie, group = id, color = grupa)) +
+  geom_line(linewidth = 1) + # (w starszych wersjach: size = 1)
   geom_point(size = 2) +
   theme_minimal()
 
+
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Recenzja wykresu
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Oto mój wykres: [wklej kod]. Zaproponuj 3 zmiany, które poprawią jego
+#    czytelność w publikacji naukowej (podpisy osi, kolory przyjazne dla
+#    daltonistów, rozmiar czcionki). Przy każdej zmianie wyjaśnij, DLACZEGO."
+#
+#   Inny pomysł: opisz słowami wykres z artykułu ze swojej dziedziny i poproś AI
+#   o plan, jakimi warstwami (geom_...) go odtworzyć. Kod napisz sama/sam.
+# ----------------------------------------------------------
 
 # 7. EKSPORT DO PUBLIKACJI (ggsave) 
 
 # Najpierw przypisz wykres do zmiennej
 moj_wykres <- ggplot(ssaki, aes(x = vore, y = sleep_total)) + geom_boxplot()
+
+# Utwórz folder na wykresy (jeśli jeszcze nie istnieje)
+if (!dir.exists("wykresy")) dir.create("wykresy")
 
 # Zapisz na dysku (R sam rozpoznaje format po rozszerzeniu)
 ggsave("wykresy/wykres_do_publikacji.png", plot = moj_wykres, 

@@ -10,6 +10,12 @@ library(gtsummary)
 library(flextable)
 library(gt)
 
+# Wczytajmy dane (każdy skrypt powinien działać samodzielnie)
+ssaki <- read_csv("dane/ssaki.csv")
+
+# Folder na wyniki (jeśli jeszcze nie istnieje)
+if (!dir.exists("wyniki")) dir.create("wyniki")
+
 # Przygotujmy dane (wybierzmy kilka ciekawych kolumn)
 dane_do_tabeli <- ssaki %>% 
   select(vore, sleep_total, bodywt, conservation)
@@ -39,6 +45,17 @@ print(tabela1)
 # w zależności od danych. Można to zmienić ręcznie, ale domyślnie działa świetnie.
 
 
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Sprawdzaj, nie ufaj na ślepo
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Recenzent pyta, jakim testem policzono p-value w mojej tabeli z gtsummary
+#    (add_p()). Jak to sprawdzić w R i jak zmienić test na test t-Studenta?"
+#
+#   UWAGA: AI potrafi wymyślić nieistniejące argumenty funkcji. Każdą
+#   podpowiedź sprawdź w pomocy R:  ?add_p  albo  ?tbl_summary
+#   i zawsze uruchom kod - to R ma ostatnie słowo, nie AI.
+# ----------------------------------------------------------
+
 # 2. EKSPORT DO WORDA 
 # gtsummary tworzy tabelę HTML. Żeby wrzucić ją do Worda, 
 # musimy zamienić ją na obiekt "flextable".
@@ -47,7 +64,7 @@ tabela1 %>%
   as_flex_table() %>%                 # Konwersja
   save_as_docx(path = "wyniki/Tabela_1_wyniki.docx")
 
-# Sprawdźcie folder "output". Macie gotowy plik Word!
+# Sprawdźcie folder "wyniki". Macie gotowy plik Word!
 
 
 # 3. ZWYKŁA TABELA Z DANYMI (nie statystyczna) 
@@ -71,7 +88,7 @@ tabela_ladna <- top_ssaki %>%
 save_as_docx(tabela_ladna, path = "wyniki/lista_ssakow.docx")
 
 
-# Zapis do LeTeX
+# Zapis do LaTeX
 
 # Przypomnijmy: 'tabela1' to nasz obiekt z gtsummary stworzony przed chwilą.
 

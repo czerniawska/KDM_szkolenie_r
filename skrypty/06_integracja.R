@@ -12,7 +12,7 @@ library(gtsummary)
 if (!dir.exists("wyniki")) dir.create("wyniki")
 
 # 2. Import Danych 
-# Wczytujemy dane (tutaj wbudowane, normalnie read_csv)
+# Wczytujemy dane z pliku CSV (ścieżka względem folderu projektu)
 raw_data <- read_csv('dane/ssaki.csv')
 
 # 3. Czyszczenie (Data Wrangling) 
@@ -47,6 +47,17 @@ final_plot <- ggplot(clean_data, aes(x = vore, y = sleep_total, fill = vore)) +
 
 # Zapis wykresu
 ggsave("wyniki/wykres_koncowy.png", plot = final_plot, dpi = 300)
+
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Code review
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Zrób code review mojego skryptu: [wklej cały skrypt]. Oceń czytelność,
+#    nazwy zmiennych i powtarzalność analizy. NIE przepisuj kodu - wypisz
+#    uwagi w punktach, od najważniejszej. Poprawki wprowadzę sama/sam."
+#
+#   Gdy skrypt działa, poproś: "Jak zamienić ten skrypt w funkcję, która
+#   przyjmuje nazwę pliku z danymi?" - to dobry kolejny krok w nauce.
+# ----------------------------------------------------------
 
 # ==============================================================================
 # KONIEC SKRYPTU

@@ -58,10 +58,20 @@ dane_dlugie %>%
 
 tabela_do_druku <- dane_dlugie %>% 
   pivot_wider(
-    names_from = czas_pomiaru,
+    names_from = czas,
     values_from = cisnienie
   )
 
+print(tabela_do_druku) # Wróciliśmy do formatu szerokiego
+
+
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Narysuj mi to
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Pokaż w formie tabelek tekstowych, jak wygląda ta tabela przed i po
+#    pivot_longer(): [wklej kod tworzący dane_szerokie]. Potem daj mi inną
+#    małą tabelę w formacie szerokim i poproś, żebym sama/sam napisał(a) pivot_longer()."
+# ----------------------------------------------------------
 
 # CZĘŚĆ 2: ŁĄCZENIE ZBIORÓW (JOINS) ------------------------
 
@@ -95,3 +105,13 @@ print(dane_polaczone)
 # Inne rodzaje (tylko do wspomnienia):
 # inner_join() - zostawia tylko tych, co są w OBU tabelach (część wspólna)
 # full_join()  - bierze wszystkich (P1, P2, P3 i P4)
+
+# ----------------------------------------------------------
+# [ĆWICZ Z AI] Przewiduj, zanim uruchomisz
+# Przykładowe polecenie (prompt) dla asystenta AI:
+#   "Wymyśl dwie małe tabele (po 4 wiersze), na których left_join(), inner_join()
+#    i full_join() dadzą różne wyniki. Pokaż tabele, ale NIE wyniki.
+#    Najpierw ja przewidzę, ile wierszy da każde złączenie."
+#
+#   Następnie uruchom kod w R i sprawdź, czy miałaś/miałeś rację.
+# ----------------------------------------------------------
